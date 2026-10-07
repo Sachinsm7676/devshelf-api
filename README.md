@@ -128,16 +128,16 @@ create / update / delete, CORS and the slug generator.
 1. Push this repository to GitHub.
 2. In Render: **New > Blueprint**, pick the repository. [`render.yaml`](render.yaml) creates a free
    PostgreSQL database `devshelf-db` and a free Docker web service `devshelf-api` (region Singapore),
-   wires the `DB_*` variables from the database, and uses `/actuator/health` as the health check.
+   passes the database's connection string as `DATABASE_URL`, and uses `/actuator/health` as the health check.
 3. When prompted, set `CORS_ALLOWED_ORIGINS` to the deployed frontend origin, e.g.
    `https://devshelf.vercel.app` (comma-separate several; no trailing slash).
 
 Free services sleep when idle, so the first request after a pause can take up to a minute.
 
-> Render's current Blueprint reference documents `connectionString`, `user`, `password` and `database`
-> as the Postgres properties for `fromDatabase`; `host` and `port` are listed for services. If the
-> Blueprint sync rejects `property: host` / `port`, set `DB_HOST` to the database's internal hostname
-> and `DB_PORT` to `5432` by hand in the service's Environment tab.
+> Render's Blueprint can pass a Postgres database only as `connectionString`
+> (`postgresql://user:password@host[:port]/database`), not as separate host and port. When `DATABASE_URL`
+> is set, `DatabaseUrlEnvironmentPostProcessor` converts it into the JDBC url, username and password and it
+> wins over the `DB_*` variables; locally, leave it unset and use `DB_*`.
 
 ## Project layout
 
@@ -146,6 +146,6 @@ src/main/java/com/devshelf/api
 ├── book/            Book entity, repository, service, controller, validator, slug generator
 │   └── dto/         request/response records, sort options, query parsing, messages
 ├── common/          error envelope and exception handling
-└── config/          CORS, clock, request logging, OpenAPI
+└── config/          CORS, clock, request logging, OpenAPI, DATABASE_URL → JDBC settings
 src/main/resources/db/migration   Flyway migrations (V1 schema, V2 seed)
 ```
