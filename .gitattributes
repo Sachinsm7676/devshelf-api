@@ -1,0 +1,4 @@
+# The Maven wrapper script must keep LF endings or it fails inside Linux containers.
+mvnw text eol=lf
+*.cmd text eol=crlf
+*.sh text eol=lf

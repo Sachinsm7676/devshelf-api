@@ -1,0 +1,20 @@
+# Build output
+target/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Local runtime files (running jar copy, logs, pid)
+.run/
+*.log
+
+# Secrets: never commit real environment files
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db

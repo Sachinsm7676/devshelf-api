@@ -1,0 +1,20 @@
+# Local PostgreSQL for reviewers: `docker compose up -d`, then run the API with its defaults.
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: devshelf
+      POSTGRES_USER: devshelf
+      POSTGRES_PASSWORD: devshelf
+    ports:
+      - "5432:5432"
+    volumes:
+      - devshelf-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U devshelf -d devshelf"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  devshelf-data:
