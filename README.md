@@ -5,6 +5,12 @@ Next.js frontend: search, filter by category, sort, page, and create / edit / de
 
 Java 21 · Spring Boot 3.5 · Spring Data JPA · PostgreSQL · Flyway · springdoc-openapi · JUnit 5
 
+| | |
+|---|---|
+| Live API | <https://devshelf-api.onrender.com/api/v1/books> (Render free plan: the first request after ~15 idle minutes takes up to a minute) |
+| Swagger UI | <https://devshelf-api.onrender.com/swagger-ui/index.html> |
+| Frontend | <https://book-catalog-frontend-rouge.vercel.app/admin/books/list> · repo [book-catalog-frontend](https://github.com/Sachinsm7676/book-catalog-frontend) |
+
 ## Endpoints
 
 All endpoints are under `/api/v1`.
