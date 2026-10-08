@@ -1,11 +1,12 @@
 # Render's free plan puts the API to sleep after ~15 idle minutes, and a cold start of this Spring Boot app on
-# the free CPU can take a few minutes - longer than the frontend waits. Pinging the health check every 10 minutes
+# the free CPU can take a few minutes - longer than the frontend waits. Pinging the health check every 5 minutes (GitHub often runs
+# schedules late, and a gap over 15 minutes lets it sleep)
 # keeps the demo awake for reviewers. One always-on free service uses about 744 of Render's 750 free hours a month.
 name: Keep the demo API awake
 
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 jobs:
