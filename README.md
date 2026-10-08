@@ -7,7 +7,7 @@ Java 21 · Spring Boot 3.5 · Spring Data JPA · PostgreSQL · Flyway · springd
 
 | | |
 |---|---|
-| Live API | <https://devshelf-api.onrender.com/api/v1/books> (Render free plan. It sleeps after ~15 idle minutes and a cold start can take a few minutes, so [`keep-warm.yml`](.github/workflows/keep-warm.yml) pings it every 5 minutes) |
+| Live API | <https://devshelf-api.onrender.com/api/v1/books> (Render free plan. It sleeps after ~15 idle minutes and a cold start can take a few minutes, so [`keep-warm.yml`](.github/workflows/keep-warm.yml) pings it every 5 minutes, and the service also pings its own health URL every 10 minutes via `APP_KEEP_AWAKE_URL`) |
 | Swagger UI | <https://devshelf-api.onrender.com/swagger-ui/index.html> |
 | Frontend | <https://book-catalog-frontend-rouge.vercel.app/admin/books/list> · repo [book-catalog-frontend](https://github.com/Sachinsm7676/book-catalog-frontend) |
 
